@@ -1,0 +1,70 @@
+CREATE DATABASE auktion_mysql;
+
+CREATE USER 'ren'@'localhost'
+    IDENTIFIED BY 'Auktion';
+
+GRANT SELECT,UPDATE,INSERT,DELETE
+    ON auktion_mysql.* TO 'ren'@'localhost';
+	
+USE auktion_mysql;
+
+CREATE TABLE alle_bieter (
+    ein_bieter_id int primary key,
+    vorname varchar(100),
+    nachname varchar(100),
+    adresse varchar(200),
+    telefon varchar(14));
+
+CREATE TABLE artikel_dienstleistung (
+    a_d_id int primary key,
+    bennenung varchar(100),
+    beschreibung text,
+    wiederverkaufspreis decimal(10),
+    gewinneder_bieter int,
+    gewinnender_preis decimal(10));
+
+CREATE TABLE benutzer (
+    benutzer_id varchar(20) primary key,
+    benutzer_name varchar(100),
+    passwort char(64));
+
+INSERT INTO benutzer
+VALUES ('Ricsi', 'Nagy Richard', SHA2('Valami@Kod123456',256));
+
+
+
+INSERT INTO alle_bieter VALUES (100, 'Schmidt', 'Maximilian', '10115 Berlin, Chausseestraße 15.', '030-1234567');
+INSERT INTO alle_bieter VALUES (101, 'Fischer', 'Hannah', '04109 Leipzig, Brühl 52.', '0341-9876543');
+INSERT INTO alle_bieter VALUES (102, 'Weber', 'Julia', '50667 Köln, Am Hof 12.', '0221-9753113');
+INSERT INTO alle_bieter VALUES (103, 'Meyer', 'Sophie', '50667 Köln, Am Hof 2.', '0221-9751331');
+INSERT INTO alle_bieter VALUES (104, 'Becker', 'Lukas', '20095 Hamburg, Spitalerstraße 30.', '040-8765432');
+INSERT INTO alle_bieter VALUES (105, 'Koch', 'Emilia', '60311 Frankfurt am Main, Zeil 44.', '069-3322199');
+INSERT INTO alle_bieter VALUES (106, 'Schneider', 'Felix', '70173 Stuttgart, Königstraße 10b.', '0711-222444');
+INSERT INTO alle_bieter VALUES (107, 'Bauer', 'Lena', '80331 München, Neuhauser Straße 8.', '089-9997766');
+INSERT INTO alle_bieter VALUES (109, 'Gloria', 'Nagy', '04109 Leipzig, Nikolaistraße 25.', '0344-9997765');
+INSERT INTO alle_bieter VALUES (109, 'Ricsi', 'Nagy', '04109 Leipzig, Nikolaistraße 25.', '0344-9997766');
+
+
+INSERT INTO artikel_dienstleistung VALUES (100, 'Sportkorb', 'Ein Korb voller Sportgeräte für aktive Menschen', 10000, 100, 12000);
+INSERT INTO artikel_dienstleistung VALUES (101, 'Heimtrainer', 'Ein Heimtrainer für diejenigen, die auch zu Hause gerne aktiv bleiben', 20000, 102, 15000);
+INSERT INTO artikel_dienstleistung VALUES (102, 'Aufblasbares Gummiboot', 'Ein unverzichtbares Accessoire für den Sommerurlaub', 15000, 103, 8000);
+INSERT INTO artikel_dienstleistung VALUES (103, 'Gratis Haarschnitt', 'Ein Gutschein, der zu einem kostenlosen Haarschnitt im Salon "SchnippSchnapp" berechtigt', 5000, 100, 2000);
+INSERT INTO artikel_dienstleistung VALUES (104, 'Wanderpaket', 'Ein Paket mit allem Nötigen für den perfekten Wandertag', 12000, 100, 14000);
+INSERT INTO artikel_dienstleistung VALUES (105, 'Campingzelt', 'Ein großes Zelt geeignet für die ganze Familie', 18000, 104, 22000);
+INSERT INTO artikel_dienstleistung VALUES (106, 'Traningmatte', 'Hochwertige Traningmatte für tägliche Bewegungen zu Hause', 7000, 102, 9000);
+INSERT INTO artikel_dienstleistung VALUES (107, 'Kaffeevollautomat', 'Ein automatischer Kaffeemaschine, die Espresso, Cappuccino und mehr zubereiten kann', 25000, 101, 33000);
+INSERT INTO artikel_dienstleistung VALUES (108, 'Elektrisches Fahrrad', 'Ein umweltfreundliches Fahrrad mit elektrischer Unterstützung für leichtes Fahren', 30000, 105, 25000);
+INSERT INTO artikel_dienstleistung VALUES (109, 'Wellness Wochenende', 'Ein Gutschein für ein Wellness Wochenende für zwei Personen im "BergSpa Resort"', 15000, 103, 12000);
+
+
+/* Teilweise Rekorde */
+INSERT INTO artikel_dienstleistung VALUES (104, 'Gratis Ölwechsel', 'Ein Gutschein für einen kostenlosen Ölwechsel', 20000, NULL, NULL);
+INSERT INTO artikel_dienstleistung VALUES (105, 'Werkzeugset', 'Ein vollständiges Set von Handwerkzeugen für Heimwerker', 10000, NULL, NULL);
+INSERT INTO artikel_dienstleistung VALUES (106, 'Gratis Autowäsche', 'Ein Gutschein für eine kostenlose Autowäsche', 3000, NULL, NULL);
+INSERT INTO artikel_dienstleistung VALUES (107, 'Erste-Hilfe-Set', 'Ein notwendiges Set für Erste Hilfe, ideal für Autos und Zuhause', 10000, NULL, NULL);
+INSERT INTO artikel_dienstleistung VALUES (108, 'Gartenwerkzeugset', 'Ein umfassendes Gartenwerkzeugset für alle Gartenbedürfnisse', 20000, NULL, NULL);
+INSERT INTO artikel_dienstleistung VALUES (109, 'Kostenloser Autoservice', 'Ein Gutschein für einen kostenlosen Service in unserer Werkstatt', 20000, NULL, NULL);
+INSERT INTO artikel_dienstleistung VALUES (110, 'Kinoticket-Paket', 'Mehrere Kinotickets zu einem vergünstigten Preis', 15000, NULL, NULL);
+INSERT INTO artikel_dienstleistung VALUES (111, 'Theaterticket-Paket', 'Mehrere Theatertickets zu einem vergünstigten Preis', 20000, NULL, NULL);
+
+    
